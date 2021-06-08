@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="586.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PeleasVistaController">
+   <children>
+      <Label alignment="CENTER" layoutY="-2.0" prefHeight="46.0" prefWidth="818.0" style="-fx-background-color: BLACK;" text="Peleas" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TableView layoutX="218.0" layoutY="51.0" prefHeight="535.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
+        <columns>
+          <TableColumn prefWidth="33.0" text="#" />
+          <TableColumn prefWidth="66.0" text="Peso" />
+            <TableColumn prefWidth="61.0" text="Anillo" />
+            <TableColumn prefWidth="226.0" text="Partido" />
+            <TableColumn minWidth="5.0" prefWidth="20.0" text="VS" />
+            <TableColumn prefWidth="203.0" text="Partido" />
+            <TableColumn minWidth="0.0" prefWidth="75.0" text="Anillo" />
+            <TableColumn prefWidth="72.0" text="Peso" />
+        </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="56.0" layoutY="59.0" prefHeight="27.0" prefWidth="132.0" text="Tolerancia">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="83.0" layoutY="108.0" prefHeight="4.0" prefWidth="78.0" text="80">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </TextField>
+      <RadioButton layoutX="21.0" layoutY="180.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" selected="true" text="Por Rondas">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="TipoDeSorteo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="142.0" layoutY="180.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" text="Aleatorio" toggleGroup="$TipoDeSorteo">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <Button fx:id="btnRegistro" layoutX="21.0" layoutY="219.0" mnemonicParsing="false" onAction="#IrARegistro" prefHeight="34.0" prefWidth="132.0" text="Registro" />
+   </children>
+</AnchorPane>

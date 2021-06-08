@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuVistaController">
+   <children>
+      <Label alignment="CENTER" layoutX="209.0" layoutY="24.0" style="-fx-background-color: BLACK;" text="Eventos" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblEventos" layoutX="256.0" layoutY="35.0" onMouseClicked="#Seleccionar" onMousePressed="#DobleClick" prefHeight="490.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <columns>
+          <TableColumn fx:id="colNombre" minWidth="0.0" prefWidth="213.0" text="Palenque" />
+          <TableColumn fx:id="colFecha" prefWidth="91.0" text="Fecha" />
+            <TableColumn fx:id="colModalidad" editable="false" prefWidth="110.0" text="Modalidad" />
+        </columns>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </TableView>
+      <Label layoutX="14.0" layoutY="52.0" prefHeight="19.0" prefWidth="83.0" text="Palenque">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPalenque" layoutX="11.0" layoutY="88.0" prefHeight="25.0" prefWidth="239.0" />
+      <Label layoutX="14.0" layoutY="138.0" prefHeight="19.0" prefWidth="83.0" text="Fecha">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dtpFechaEvento" layoutX="14.0" layoutY="173.0" prefHeight="25.0" prefWidth="231.0" />
+      <Label layoutX="14.0" layoutY="236.0" prefHeight="27.0" prefWidth="96.0" text="Modalidad">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbModalidad" layoutX="14.0" layoutY="280.0" prefHeight="35.0" prefWidth="224.0" />
+      <Button fx:id="btnAgregarEvento" layoutX="14.0" layoutY="357.0" mnemonicParsing="false" onAction="#AgregarEvento" prefHeight="35.0" prefWidth="224.0" text="Agregar Evento" />
+      <Button fx:id="btnModificarEvento" layoutX="14.0" layoutY="409.0" mnemonicParsing="false" onAction="#ModificarEvento" prefHeight="35.0" prefWidth="224.0" text="Modificar Evento" />
+      <Button fx:id="btnIRaEvento" layoutX="14.0" layoutY="460.0" mnemonicParsing="false" onAction="#IrAEvento" prefHeight="35.0" prefWidth="224.0" text="Ir a Evento" />
+      <Button fx:id="btnEliminarEvento" layoutX="14.0" layoutY="511.0" mnemonicParsing="false" onAction="#EliminarEvento" prefHeight="35.0" prefWidth="224.0" text="Eliminar Evento" />
+   </children>
+</AnchorPane>

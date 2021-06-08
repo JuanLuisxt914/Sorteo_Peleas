@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="1178.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroGallosVistaController">
+   <children>
+      <Pane layoutX="-6.0" layoutY="-5.0" prefHeight="64.0" prefWidth="816.0" style="-fx-background-color: BLACK;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" graphicTextGap="9.0" prefHeight="62.0" prefWidth="1178.0" text="Registro" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" top="2.0" />
+               </padding>
+            </Label>
+         </children>
+      </Pane>
+      <TextField fx:id="txtPeso" layoutX="90.0" layoutY="130.0" prefHeight="24.0" prefWidth="149.0" />
+      <TableView fx:id="tblGallos" editable="true" fixedCellSize="-5.0" layoutX="436.0" layoutY="64.0" onMouseClicked="#Seleccionar" prefHeight="535.0" prefWidth="742.0" styleClass="table-cell" stylesheets="@../tamaño.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="436.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+        <columns>
+          <TableColumn fx:id="colPeso" prefWidth="128.0" text="Peso" />
+          <TableColumn fx:id="colAnillo" prefWidth="129.0" text="Anillo" />
+            <TableColumn fx:id="colID" minWidth="0.0" prefWidth="85.0" text="id" />
+            <TableColumn fx:id="colPartido" prefWidth="395.0" text="Partido" />
+        </columns>
+      </TableView>
+      <Label layoutX="17.0" layoutY="127.0" prefHeight="25.0" prefWidth="63.0" text="Peso">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAnillo" layoutX="90.0" layoutY="176.0" prefHeight="24.0" prefWidth="149.0" />
+      <Button fx:id="btnAgregarGallo" layoutX="263.0" layoutY="154.0" mnemonicParsing="false" onAction="#AgregarGallo" prefHeight="25.0" prefWidth="119.0" text="Agregar Gallo" />
+      <Label layoutX="17.0" layoutY="173.0" prefHeight="25.0" prefWidth="63.0" text="Anillo">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPartido" layoutX="90.0" layoutY="226.0" prefHeight="25.0" prefWidth="283.0" />
+      <Label layoutX="14.0" layoutY="223.0" prefHeight="31.0" prefWidth="69.0" text="Partido">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNumGallo" layoutX="130.0" layoutY="73.0" prefHeight="36.0" prefWidth="100.0" text="Gallo 1">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="280.0" prefHeight="31.0" prefWidth="75.0" text="Id Amigo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtIdAmigo" layoutX="92.0" layoutY="283.0" prefHeight="25.0" prefWidth="107.0" />
+      <Button fx:id="btnAgregarGallo" layoutX="219.0" layoutY="283.0" mnemonicParsing="false" onAction="#AgregarAmigo" prefHeight="25.0" prefWidth="119.0" text="Agregar Amigo" />
+      <TableView fx:id="tblAmigos" layoutX="90.0" layoutY="357.0" prefHeight="152.0" prefWidth="283.0">
+        <columns>
+          <TableColumn fx:id="colIdPartido" prefWidth="66.0" text="id Partido" />
+          <TableColumn fx:id="colPartidoAmigo" prefWidth="216.0" text="Partido" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnGuardar" layoutX="10.0" layoutY="537.0" mnemonicParsing="false" onAction="#Guardar" prefHeight="31.0" prefWidth="132.0" text="Guardar" />
+      <Button fx:id="btnModificar" layoutX="149.0" layoutY="537.0" mnemonicParsing="false" onAction="#Modificar" prefHeight="31.0" prefWidth="132.0" text="Modificar" />
+      <Button fx:id="btnEliminar" layoutX="289.0" layoutY="537.0" mnemonicParsing="false" onAction="#Eliminar" prefHeight="31.0" prefWidth="132.0" text="Eliminar" />
+      <Label layoutX="162.0" layoutY="321.0" prefHeight="31.0" prefWidth="107.0" text="Partidos Amigos">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
