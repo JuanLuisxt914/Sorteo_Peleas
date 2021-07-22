@@ -15,7 +15,7 @@ public class Main extends Application {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/vista/RegistroGallosVista.fxml"));
+            loader.setLocation(Main.class.getResource("/vista/MenuVista.fxml"));
             Pane ventana = (Pane) loader.load();
 
             // Show the scene containing the root layout.

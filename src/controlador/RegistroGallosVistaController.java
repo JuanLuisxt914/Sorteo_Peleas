@@ -147,15 +147,15 @@ public class RegistroGallosVistaController implements Initializable {
     @FXML
     private void AgregarGallo(ActionEvent event) {
         try {
+            System.out.println("aqui entra");
             int peso = Integer.parseInt(this.txtPeso.getText());
             int anillo = Integer.parseInt(this.txtAnillo.getText());
             int id = this.gallosTabla.size() + 1;
             String partido = this.txtPartido.getText();
             GalloTabla g = new GalloTabla(peso, anillo, id, partido);
             gallosTabla.add(g);
-            Gallo g1 = new Gallo(id, peso, anillo);
-            gallos.add(g1);
             this.tblGallos.refresh();
+            System.out.println("aqui tmbn");
 
             if (this.numGallo == 1) {
                 numGallo++;
