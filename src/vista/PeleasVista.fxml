@@ -14,16 +14,16 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <TableView layoutX="218.0" layoutY="51.0" prefHeight="535.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
+      <TableView fx:id="tblPeleas" layoutX="218.0" layoutY="51.0" prefHeight="535.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
         <columns>
-          <TableColumn prefWidth="33.0" text="#" />
-          <TableColumn prefWidth="66.0" text="Peso" />
-            <TableColumn prefWidth="61.0" text="Anillo" />
-            <TableColumn prefWidth="226.0" text="Partido" />
-            <TableColumn minWidth="5.0" prefWidth="20.0" text="VS" />
-            <TableColumn prefWidth="203.0" text="Partido" />
-            <TableColumn minWidth="0.0" prefWidth="75.0" text="Anillo" />
-            <TableColumn prefWidth="72.0" text="Peso" />
+          <TableColumn fx:id="num" prefWidth="33.0" text="#" />
+          <TableColumn fx:id="peso1" prefWidth="66.0" text="Peso" />
+            <TableColumn fx:id="anillo1" prefWidth="61.0" text="Anillo" />
+            <TableColumn fx:id="partido1" prefWidth="226.0" text="Partido" />
+            <TableColumn fx:id="vs" minWidth="5.0" prefWidth="20.0" text="VS" />
+            <TableColumn fx:id="partido2" prefWidth="203.0" text="Partido" />
+            <TableColumn fx:id="anillo2" minWidth="0.0" prefWidth="75.0" text="Anillo" />
+            <TableColumn fx:id="peso2" prefWidth="72.0" text="Peso" />
         </columns>
       </TableView>
       <Label alignment="CENTER" layoutX="56.0" layoutY="59.0" prefHeight="27.0" prefWidth="132.0" text="Tolerancia">

@@ -61,6 +61,7 @@ public class MenuVistaController implements Initializable {
     private ObservableList<Evento> aux;
     @FXML
     private Button btnEliminarEvento;
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,7 +69,6 @@ public class MenuVistaController implements Initializable {
         aux = FXCollections.observableArrayList();
         initCombos();
         initTablaEventos();
-
     }
 
     public void initTablaEventos() {
@@ -170,7 +170,7 @@ public class MenuVistaController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Valio Barriga");
-            alert.setContentText("Algo llenaste mal pendejo");
+            alert.setContentText("Algo llenaste algo mal ");
             alert.showAndWait();
         }
     }
@@ -225,7 +225,7 @@ public class MenuVistaController implements Initializable {
             this.dtpFechaEvento.setValue(e.getFechaEvento());
             this.cmbModalidad.setValue(e.getModalidad());
         }
-    }
+    }   
 
     @FXML
     private void IrAEvento(ActionEvent event) {
@@ -320,5 +320,4 @@ public class MenuVistaController implements Initializable {
             cambiarVentana(e);
         }
     }
-
 }

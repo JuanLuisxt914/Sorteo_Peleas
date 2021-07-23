@@ -122,7 +122,7 @@ public class Evento {
 
         conexion.cerrarConexion();
 
-        // Si deuvelve mas de 0, es que hemos insertado registros
+        // Si deuvelve mas de 0, es que hemos borrado registros
         if (filas > 0) {
             return true;
         } else {
@@ -140,13 +140,13 @@ public class Evento {
                 +"fecha = '"+this.getFechaEvento().toString()+"',"
                 + "modalidad = '"+this.getModalidad()+"' "
                 +"WHERE eventos.id_evento = "+ this.getIdEvento();
+        
+        System.out.println(SQL);
 
         // Devuelvo el numero de filas afectadas
         int filas = conexion.ejecutarInstruccion(SQL);
 
         conexion.cerrarConexion();
-
-        System.out.println("entra aqui");
 
         // Si deuvelve mas de 0, es que hemos insertado registros
         if (filas > 0) {
