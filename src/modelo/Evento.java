@@ -114,10 +114,20 @@ public class Evento {
         ConexionMySQL conexion = new ConexionMySQL("localhost", "sorteo_de_peleas", "root", "");
 
         // Sentencia para introducir un servicio
+        
+        String SQLG = "DELETE FROM gallos WHERE gallos.id_evento ="+this.getIdEvento();
+        String SQLA = "DELETE FROM amigos WHERE amigos.id_evento ="+this.getIdEvento();
+        String SQLP = "DELETE FROM partidos WHERE partidos.id_evento ="+this.getIdEvento();
         String SQL = "DELETE FROM eventos WHERE eventos.id_evento ="+this.getIdEvento();
 
         // Devuelvo el numero de filas afectadas
+        System.out.println(SQLG);
+        System.out.println(SQLA);
+        System.out.println(SQLP);
         System.out.println(SQL);
+        int filasG = conexion.ejecutarInstruccion(SQLG);
+        int filasA = conexion.ejecutarInstruccion(SQLA);
+        int filasP = conexion.ejecutarInstruccion(SQLP);
         int filas = conexion.ejecutarInstruccion(SQL);
 
         conexion.cerrarConexion();

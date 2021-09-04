@@ -64,7 +64,7 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <Label fx:id="lblNumGallo" alignment="CENTER" contentDisplay="CENTER" layoutX="908.0" layoutY="69.0" prefHeight="36.0" prefWidth="349.0" text="Selecciona el Partido" textAlignment="CENTER" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="69.0">
+      <Label fx:id="lblNombrePartido" alignment="CENTER" contentDisplay="CENTER" layoutX="908.0" layoutY="69.0" prefHeight="36.0" prefWidth="394.0" text="Selecciona el Partido" textAlignment="CENTER" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="69.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -81,12 +81,11 @@
       </Label>
       <TableView fx:id="tblPartidosAmigos" layoutX="14.0" layoutY="399.0" prefHeight="197.0" prefWidth="342.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="399.0">
         <columns>
-          <TableColumn fx:id="idPartidosAmigos" prefWidth="70.0" text="id" />
-          <TableColumn fx:id="PartidosAmigos" prefWidth="264.0" text="Partido" />
+          <TableColumn fx:id="colIdPartidosAmigos" prefWidth="70.0" text="id" />
+          <TableColumn fx:id="colPartidosAmigos" prefWidth="264.0" text="Partido" />
         </columns>
       </TableView>
-      <Button fx:id="btnEliminarAmigo" layoutX="239.0" layoutY="360.0" mnemonicParsing="false" onAction="#EliminarAmigo" prefHeight="25.0" prefWidth="119.0" text="Eliminar Amigo" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="360.0" />
-      <Button fx:id="btnModificarAmigo" layoutX="239.0" layoutY="360.0" mnemonicParsing="false" onAction="#ModificarAmigo" prefHeight="25.0" prefWidth="119.0" text="Modificar Amigo" AnchorPane.leftAnchor="239.0" AnchorPane.topAnchor="360.0" />
+      <Button fx:id="btnEliminarAmigo" layoutX="239.0" layoutY="359.0" mnemonicParsing="false" onAction="#EliminarAmigo" prefHeight="25.0" prefWidth="119.0" text="Eliminar Amigo" AnchorPane.leftAnchor="239.0" AnchorPane.topAnchor="359.0" />
       <Button fx:id="btnEliminarGallo" layoutX="1023.0" layoutY="108.0" mnemonicParsing="false" onAction="#EliminarGallo" prefHeight="25.0" prefWidth="119.0" text="Eliminar Gallo" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="108.0" />
       <Button fx:id="btnModificarGallo" layoutX="1023.0" layoutY="182.0" mnemonicParsing="false" onAction="#ModificarGallo" prefHeight="25.0" prefWidth="119.0" text="Modificar Gallo" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="182.0" />
    </children>

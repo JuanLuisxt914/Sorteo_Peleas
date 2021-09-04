@@ -115,6 +115,14 @@ public class MenuVistaController implements Initializable {
         ObservableList<String> obs = FXCollections.observableArrayList();
         obs.add("Derbi de 1 Gallo");
         obs.add("Derbi de 2 Gallos");
+        obs.add("Derbi de 3 Gallos");
+        obs.add("Derbi de 4 Gallos");
+        obs.add("Derbi de 5 Gallos");
+        obs.add("Derbi de 6 Gallos");
+        obs.add("Derbi de 7 Gallos");
+        obs.add("Derbi de 8 Gallos");
+        obs.add("Derbi de 9 Gallos");
+        obs.add("Derbi de 10 Gallos");
 
         this.cmbModalidad.setItems(obs);
     }
@@ -253,7 +261,7 @@ public class MenuVistaController implements Initializable {
                 alert.setContentText("Estas seguro que deseas eliminarlo??");
                 Optional<ButtonType> action = alert.showAndWait();
                 if (action.get() == ButtonType.OK) {
-                    if (e.borrarEvento()) {
+                     if (e.borrarEvento()) {
                         eventos.remove(e);
                         this.tblEventos.refresh();
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);

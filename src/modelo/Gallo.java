@@ -3,12 +3,17 @@ package modelo;
 
 import conexiondb.ConexionMySQL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Gallo {
     private int id;
     private int peso;
     private int anillo;
     private String partido;
+    private ArrayList<Partido> amigos = new ArrayList<Partido>();
+    private int idPartido =0;
+    private boolean match = false;
+    
 
     public Gallo(int peso, int anillo, String partido) {
         this.peso = peso;
@@ -16,6 +21,10 @@ public class Gallo {
         this.partido = partido;
     }
 
+    public Gallo() {
+    }
+
+    
     
     public Gallo(int id, int peso, int anillo) {
         this.id = id;
@@ -28,6 +37,33 @@ public class Gallo {
         this.peso = peso;
         this.anillo = anillo;
         this.partido = partido;
+    }
+
+    public boolean isMatch() {
+        return match;
+    }
+
+    public void setMatch(boolean match) {
+        this.match = match;
+    }
+
+    
+    public int getIdPartido() {
+        return idPartido;
+    }
+
+    public void setIdPartido(int idPartido) {
+        this.idPartido = idPartido;
+    }
+    
+    
+
+    public ArrayList<Partido> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(ArrayList<Partido> amigos) {
+        this.amigos = amigos;
     }
     
 
@@ -64,16 +100,17 @@ public class Gallo {
         this.anillo = anillo;
     }
     
-    public boolean insertarGallo(int id_partido) throws SQLException{
+    public boolean insertarGallo(int id_partido, int idEvento) throws SQLException{
         // Abro la conexion
         ConexionMySQL conexion = new ConexionMySQL("localhost", "sorteo_de_peleas", "root", "");
  
         // Sentencia para introducir un servicio
-        String SQL = "INSERT INTO gallos (anillo, peso, id_partido) "
+        String SQL = "INSERT INTO gallos (anillo, peso, id_partido, id_evento) "
                 + "values("
                 + "'" + this.getAnillo() + "', "
                 + "'" + this.getPeso()+ "', "
-                + "'" + id_partido+ "' "
+                + "'" + id_partido+ "', "
+                + "'"+idEvento+"'"
                 + " )";
 
         // Devuelvo el numero de filas afectadas

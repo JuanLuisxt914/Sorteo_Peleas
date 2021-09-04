@@ -21,6 +21,7 @@ public class Main extends Application {
             // Show the scene containing the root layout.
             Scene scene = new Scene(ventana);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());

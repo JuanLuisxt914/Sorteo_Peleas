@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -49,9 +47,9 @@ public class RegistroGallosVistaController implements Initializable {
     @FXML
     private TableView<Partido> tblPartidosAmigos;
     @FXML
-    private TableColumn<Partido, Integer> idPartidosAmigos;
+    private TableColumn<Partido,Integer> colIdPartidosAmigos;
     @FXML
-    private TableColumn<Partido, String> PartidosAmigos;
+    private TableColumn<Partido, String> colPartidosAmigos;
     
     //Tabla Gallos
     @FXML
@@ -65,7 +63,7 @@ public class RegistroGallosVistaController implements Initializable {
     
     //Formulario Gallos
     @FXML
-    private Label lblNumGallo;
+    private Label lblNombrePartido;
     @FXML
     private TextField txtPeso;
     @FXML
@@ -94,18 +92,24 @@ public class RegistroGallosVistaController implements Initializable {
     private Button btnAgregarAmigo;
     @FXML
     private Button btnEliminarAmigo;
-    @FXML
-    private Button btnModificarAmigo;
     
     //Variables Globales
     Evento evento;
     private ObservableList<Partido> partidos;
+    private ObservableList<Partido> amigos;
     private ObservableList<Gallo> gallos;
+    private ObservableList<Integer> numPartidos;
+    private ObservableList<Integer> numAmigos;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gallos = FXCollections.observableArrayList();
         partidos = FXCollections.observableArrayList();
+        amigos = FXCollections.observableArrayList();
+        numPartidos = FXCollections.observableArrayList();
+        numAmigos = FXCollections.observableArrayList();
    
     }
     
@@ -127,11 +131,10 @@ public class RegistroGallosVistaController implements Initializable {
                 int id = rs.getInt("id_partido");
                 int idP = rs.getInt("num_partido");
                 String nombre = rs.getString("nombre_partido");
-                ArrayList<Gallo> gallos = new ArrayList<Gallo>();
-                ArrayList<Partido> amigos= new ArrayList<Partido>();
                 
-                Partido p = new Partido(id,idP, nombre,gallos,amigos);
+                Partido p = new Partido(id,idP, nombre);
                 partidos.add(p);
+                numPartidos.add(idP);
             }
             conexion.cerrarConexion();
             
@@ -150,6 +153,11 @@ public class RegistroGallosVistaController implements Initializable {
         this.colAnillo.setCellValueFactory(new PropertyValueFactory("anillo"));
         this.colPartidoGallos.setCellValueFactory(new PropertyValueFactory("partido"));
         this.tblGallos.setItems(gallos);
+        
+        //Amigos
+        this.colIdPartidosAmigos.setCellValueFactory(new PropertyValueFactory("numPartido"));
+        this.colPartidosAmigos.setCellValueFactory(new PropertyValueFactory("nombrePartido"));
+
 }
     
     public void initTablaGallos(Partido e){
@@ -169,7 +177,7 @@ public class RegistroGallosVistaController implements Initializable {
                 int idP = rs.getInt("id_partido");
                 String nombre = e.getNombrePartido();
 
-                Gallo g = new Gallo(id,anillo, peso,nombre);
+                Gallo g = new Gallo(id,peso, anillo,nombre);
                 gallos.add(g);
                 this.tblGallos.setItems(gallos);
             }
@@ -177,6 +185,35 @@ public class RegistroGallosVistaController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(RegistroGallosVistaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void initTablaAmigos(Partido e){
+        try {
+            numAmigos.clear();
+            amigos.clear();
+            
+            ConexionMySQL conexion = new ConexionMySQL("localhost", "sorteo_de_peleas", "root", "");
+
+            conexion.ejecutarConsulta("SELECT * FROM amigos WHERE amigos.id_partido = "+e.getIdPartido());
+
+            ResultSet rs = conexion.getResultSet();
+
+            while (rs.next()) {
+                
+                int id = rs.getInt("id_amigo");
+                int num = rs.getInt("num_amigo");
+                String nombre = rs.getString("partido_amigo");
+                Partido p = new Partido(id,num,nombre);
+                amigos.add(p);
+                numAmigos.add(num);
+                this.tblPartidosAmigos.setItems(amigos);
+            }
+            conexion.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroGallosVistaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
     }
     
     public void closeWindows() {
@@ -214,13 +251,18 @@ public class RegistroGallosVistaController implements Initializable {
     ////////////////// Partidos //////////////////////////////////////////////////
     @FXML
     private void Seleccionar(MouseEvent event) {
-        Partido e = this.tblPartidos.getSelectionModel().getSelectedItem();
-        this.lblNumGallo.setText(e.getNombrePartido());
-        this.txtPeso.setText("");
-        this.txtAnillo.setText("");
-        if (e != null) {
-            initTablaGallos(e);
+        if (partidos.size()!=0) {
+            Partido e = this.tblPartidos.getSelectionModel().getSelectedItem();
+            
+            if (e != null) {
+                this.lblNombrePartido.setText(e.getNombrePartido());
+                this.txtPeso.setText("");
+                this.txtAnillo.setText("");
+                initTablaGallos(e);
+                initTablaAmigos(e);
+            }
         }
+        
     }
     @FXML
     private void Guardar(ActionEvent event) {  
@@ -232,11 +274,18 @@ public class RegistroGallosVistaController implements Initializable {
                 alert.setContentText("Ni el Nombre escribiste ");
                 alert.showAndWait();
             }else{
-                int num = partidos.size()+1;
+                int num = 0;
+                if (partidos.size()==0) {
+                    num = 1; 
+                }else{
+                    int size = this.numPartidos.size()-1;
+                    System.out.println("size "+size);
+                    System.out.println("entro en else");
+                    num = this.numPartidos.get(size)+1; 
+                }
+                
                 String nombre = this.txtPartido.getText();
-                ArrayList<Gallo> gallos = new ArrayList<Gallo>();
-                ArrayList<Partido> amigos= new ArrayList<Partido>();
-                Partido p = new Partido(num,nombre,gallos,amigos);
+                Partido p = new Partido(num,nombre);
                 if (p.insertarPartido(evento.getIdEvento())) {
                     partidos.clear();
                     initTablas();
@@ -274,6 +323,7 @@ public class RegistroGallosVistaController implements Initializable {
                     e.setNombrePartido(this.txtPartido.getText());
                     if (e.modificarPartido()) {
                         this.tblPartidos.refresh();
+                        this.lblNombrePartido.setText(e.getNombrePartido());
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setHeaderText(null);
                         alert1.setTitle("Exito ALV");
@@ -310,9 +360,11 @@ public class RegistroGallosVistaController implements Initializable {
                     if (e.borrarPartido()) {
                         partidos.remove(e);
                         gallos.clear();
+                        amigos.clear();
                         this.tblGallos.refresh();
                         this.tblPartidos.refresh();
-                        this.lblNumGallo.setText("Selecciona el Partido");
+                        this.tblPartidosAmigos.refresh();
+                        this.lblNombrePartido.setText("Selecciona el Partido");
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setHeaderText(null);
                         alert1.setTitle("Exito ALV");
@@ -365,9 +417,9 @@ public class RegistroGallosVistaController implements Initializable {
                         int anillo = Integer.parseInt(this.txtAnillo.getText());
                         int peso = Integer.parseInt(this.txtPeso.getText());
                         String nombre = e.getNombrePartido();
-                        Gallo g= new Gallo(anillo,peso,nombre);
+                        Gallo g= new Gallo(peso,anillo,nombre);
                         if (e.getIdPartido()!=0) {
-                            if (g.insertarGallo(e.getIdPartido())) {
+                            if (g.insertarGallo(e.getIdPartido(),evento.getIdEvento())) {
                                 initTablaGallos(e);
                                 this.txtAnillo.setText("");
                                 this.txtPeso.setText("");
@@ -425,7 +477,9 @@ public class RegistroGallosVistaController implements Initializable {
                 Optional<ButtonType> action = alert.showAndWait();
                 if (action.get() == ButtonType.OK) {
                     if (g.borrarGallo()) {
-                        gallos.remove(g);
+                        gallos.remove(g);                      
+                        this.txtAnillo.setText("");
+                        this.txtPeso.setText("");
                         this.tblGallos.refresh();
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setHeaderText(null);
@@ -452,23 +506,212 @@ public class RegistroGallosVistaController implements Initializable {
     }
     @FXML
     private void ModificarGallo(ActionEvent event) throws SQLException {
-        Gallo g = this.tblGallos.getSelectionModel().getSelectedItem();
-        if (g != null) {
-            if (gallos.contains(g)) {
+        try {
+            Gallo g = this.tblGallos.getSelectionModel().getSelectedItem();
+            if (g != null) {
+                if (gallos.contains(g)) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Modificar");
+                    alert.setContentText("Estas seguro que deseas Modificarlo??");
+                    Optional<ButtonType> action = alert.showAndWait();
+                    if (action.get() == ButtonType.OK) {
+                        g.setAnillo(Integer.parseInt(this.txtAnillo.getText()));
+                        g.setPeso(Integer.parseInt(this.txtPeso.getText()));
+                        if (g.modificarGallo()) {
+                            this.tblGallos.refresh();
+                            this.txtAnillo.setText("");
+                            this.txtPeso.setText("");
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setHeaderText(null);
+                            alert1.setTitle("Exito ALV");
+                            alert1.setContentText("El pinche Gallo fue Modificado con exito ALV ");
+                            alert1.showAndWait();
+                        }
+                    }
+                } else {
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setHeaderText(null);
+                    alert1.setTitle("Valio Barriga");
+                    alert1.setContentText("Algo Valio Madres we");
+                    alert1.showAndWait();
+                }
+            } else {
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setHeaderText(null);
+                alert1.setTitle("Valio Barriga");
+                alert1.setContentText("No Seleccionaste ningun Gallo ALV");
+                alert1.showAndWait();
+            }
+            
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Solo se permiten numeros ");
+            alert.showAndWait();
+        } 
+        
+    }
+    @FXML
+    private void seleccionarGallo(MouseEvent event) {
+        if (gallos.size()!=0) {
+            Gallo g = this.tblGallos.getSelectionModel().getSelectedItem();
+            if (g != null) {
+                this.txtPeso.setText(g.getPeso()+"");
+                this.txtAnillo.setText(g.getAnillo()+"");   
+            }  
+        }
+            
+    }
+    @FXML
+    private void enterPeso(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            this.txtAnillo.requestFocus(); 
+        }
+    }
+    @FXML
+    private void enterAnillo(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            this.btnAgregarGallo.fire(); 
+        }
+    }
+
+    ////////////////// Amigos //////////////////////////////////////////////////
+    @FXML
+    private void AgregarAmigo(ActionEvent event) throws SQLException {
+        try {
+            Partido e = this.tblPartidos.getSelectionModel().getSelectedItem();
+            if (partidos.size()!=0) {
+                if (e != null) {
+                    if (this.txtIdAmigo.getText().equals("") ){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Error");
+                        alert.setContentText("No escribiste el id del amigo ");
+                        alert.showAndWait();
+                    }else{
+                        int num = Integer.parseInt(this.txtIdAmigo.getText());
+                        if (numPartidos.contains(num)) {
+                            int id=0;
+                            String nombre="";
+
+                            ConexionMySQL conexion = new ConexionMySQL("localhost", "sorteo_de_peleas", "root", "");
+
+                            conexion.ejecutarConsulta("SELECT * FROM partidos WHERE partidos.num_partido = "+num+
+                                    " AND partidos.id_evento = "+this.evento.getIdEvento());
+
+                            ResultSet rs = conexion.getResultSet();
+
+                            while (rs.next()) {
+
+                                id = rs.getInt("id_partido");
+                                int numa = rs.getInt("num_partido");
+                                nombre = rs.getString("nombre_partido");
+                                System.out.println("id: "+id);
+                                System.out.println("numA: "+numa);
+                                System.out.println("nombre: "+nombre);
+                            }
+
+                            conexion.cerrarConexion();
+
+                            if (e.getIdPartido()!=0) {
+                                if (num != e.getNumPartido()) {
+                                    try {
+                                        if (!numAmigos.contains(num)) {
+                                             if (e.insertarPartidoAmigo(num, nombre,id,evento.getIdEvento())) {
+                                                initTablaAmigos(e);
+                                                this.txtIdAmigo.setText("");
+                                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                                alert.setHeaderText(null);
+                                                alert.setTitle("Exito ALV");
+                                                alert.setContentText("Amigo agregado con exito ALV ");
+                                                alert.showAndWait();
+                                            }else{
+                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                alert.setHeaderText(null);
+                                                alert.setTitle("Error");
+                                                alert.setContentText("Algo Valio Madres we ");
+                                                alert.showAndWait(); 
+                                            }
+                                        }else{
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setHeaderText(null);
+                                            alert.setTitle("Error");
+                                            alert.setContentText("Ya agregaste al partido amigo ");
+                                            alert.showAndWait();
+
+                                        }
+                                        
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(RegistroGallosVistaController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }    
+                                }else{
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setHeaderText(null);
+                                    alert.setTitle("Error");
+                                    alert.setContentText("Es el mismo partido ");
+                                    alert.showAndWait();  
+                                    this.txtIdAmigo.setText("");
+                                }
+
+                            }else{
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText(null);
+                                alert.setTitle("Error");
+                                alert.setContentText("el id es 0");
+                                alert.showAndWait();
+                            }   
+                        }else{
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("Error");
+                            alert.setContentText("No existe el partido");
+                            alert.showAndWait();
+                            this.txtIdAmigo.setText("");
+                        }
+                    }
+                }else{
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setHeaderText(null);
+                    alert1.setTitle("Valio Barriga");
+                    alert1.setContentText("No Tienes ningun Partido seleccionado");
+                    alert1.showAndWait();   
+                }  
+            }else{
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setHeaderText(null);
+                alert1.setTitle("Valio Barriga");
+                alert1.setContentText("No Tienes ningun Partido seleccionado");
+                alert1.showAndWait();   
+            }             
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Solo se permiten numeros ");
+            alert.showAndWait();
+        }
+        
+    }
+    @FXML
+    private void EliminarAmigo(ActionEvent event) throws SQLException {
+        Partido pA = this.tblPartidosAmigos.getSelectionModel().getSelectedItem();
+        Partido p = this.tblPartidos.getSelectionModel().getSelectedItem();
+        if (pA != null) {
+            if (amigos.contains(pA)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText(null);
-                alert.setTitle("Modificar");
-                alert.setContentText("Estas seguro que deseas Modificarlo??");
+                alert.setTitle("Eliminar");
+                alert.setContentText("Estas seguro que deseas eliminarlo??");
                 Optional<ButtonType> action = alert.showAndWait();
                 if (action.get() == ButtonType.OK) {
-                    g.setAnillo(Integer.parseInt(this.txtAnillo.getText()));
-                    g.setPeso(Integer.parseInt(this.txtPeso.getText()));
-                    if (g.modificarGallo()) {
-                        this.tblGallos.refresh();
+                    if (pA.borrarPartidoAmigo(p.getNumPartido())) {
+                        initTablaAmigos(p);
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setHeaderText(null);
                         alert1.setTitle("Exito ALV");
-                        alert1.setContentText("El pinche Gallo fue Modificado con exito ALV ");
+                        alert1.setContentText("El pinche partido fue borrado con exito ALV ");
                         alert1.showAndWait();
                     }
                 }
@@ -487,39 +730,5 @@ public class RegistroGallosVistaController implements Initializable {
             alert1.showAndWait();
         }
     }
-    @FXML
-    private void seleccionarGallo(MouseEvent event) {
-        Gallo g = this.tblGallos.getSelectionModel().getSelectedItem();
-        this.txtPeso.setText(g.getPeso()+"");
-        this.txtAnillo.setText(g.getAnillo()+"");   
-    }
-    @FXML
-    private void enterPeso(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            this.txtAnillo.requestFocus(); 
-        }
-    }
-    @FXML
-    private void enterAnillo(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            this.btnAgregarGallo.fire(); 
-        }
-    }
-
-    ////////////////// Amigos //////////////////////////////////////////////////
-    @FXML
-    private void AgregarAmigo(ActionEvent event) {
-    }
-    
-    @FXML
-    private void EliminarAmigo(ActionEvent event) {
-    }
-
-    @FXML
-    private void ModificarAmigo(ActionEvent event) {
-    }
-
-    
-
 }    
 

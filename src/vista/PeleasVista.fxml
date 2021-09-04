@@ -36,7 +36,7 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </TextField>
-      <RadioButton layoutX="21.0" layoutY="180.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" selected="true" text="Por Rondas">
+      <RadioButton fx:id="rbRondas" layoutX="21.0" layoutY="180.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" selected="true" text="Por Rondas">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -44,11 +44,15 @@
             <ToggleGroup fx:id="TipoDeSorteo" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="142.0" layoutY="180.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" text="Aleatorio" toggleGroup="$TipoDeSorteo">
+      <RadioButton fx:id="rbAleatorio" layoutX="142.0" layoutY="180.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" text="Aleatorio" toggleGroup="$TipoDeSorteo">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </RadioButton>
-      <Button fx:id="btnRegistro" layoutX="21.0" layoutY="219.0" mnemonicParsing="false" onAction="#IrARegistro" prefHeight="34.0" prefWidth="132.0" text="Registro" />
+      <Button fx:id="btnRegistro" layoutX="14.0" layoutY="219.0" mnemonicParsing="false" onAction="#IrARegistro" prefHeight="34.0" prefWidth="230.0" text="Registro" />
+      <Button fx:id="Sortear" layoutX="14.0" layoutY="276.0" mnemonicParsing="false" onAction="#Sortear" prefHeight="34.0" prefWidth="230.0" text="Sortear" />
+      <Button layoutX="14.0" layoutY="332.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="230.0" text="Sortear Manual" />
+      <Button layoutX="14.0" layoutY="527.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="230.0" text="Imprimir" />
+      <Button layoutX="17.0" layoutY="390.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="230.0" text="Modificar Sorteo" />
    </children>
 </AnchorPane>
