@@ -27,12 +27,20 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.Evento;
 
 public class MenuVistaController implements Initializable {
@@ -61,6 +69,8 @@ public class MenuVistaController implements Initializable {
     private ObservableList<Evento> aux;
     @FXML
     private Button btnEliminarEvento;
+    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
+
    
 
     @Override
@@ -69,6 +79,56 @@ public class MenuVistaController implements Initializable {
         aux = FXCollections.observableArrayList();
         initCombos();
         initTablaEventos();
+        
+        tblEventos.setRowFactory(tv -> {
+            TableRow<Evento> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.put(SERIALIZED_MIME_TYPE, index);
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragOver(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                        event.consume();
+                    }
+                }
+            });
+
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                    Evento draggedPerson = tblEventos.getItems().remove(draggedIndex);
+
+                    int dropIndex ; 
+
+                    if (row.isEmpty()) {
+                        dropIndex = tblEventos.getItems().size() ;
+                    } else {
+                        dropIndex = row.getIndex();
+                    }
+
+                    tblEventos.getItems().add(dropIndex, draggedPerson);
+
+                    event.setDropCompleted(true);
+                    tblEventos.getSelectionModel().select(dropIndex);
+                    event.consume();
+                }
+            });
+
+            return row ;
+        });
     }
 
     public void initTablaEventos() {
@@ -236,14 +296,14 @@ public class MenuVistaController implements Initializable {
     }   
 
     @FXML
-    private void IrAEvento(ActionEvent event) {
+    private void IrAEvento(ActionEvent event) throws SQLException {
         Evento e = this.tblEventos.getSelectionModel().getSelectedItem();
         if (e != null) {
             cambiarVentana(e);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setTitle("Valio Barriga");
+            alert.setTitle("Error");
             alert.setContentText("No Seleccionaste ningun evento ALV");
             alert.showAndWait();
         }
@@ -288,7 +348,7 @@ public class MenuVistaController implements Initializable {
 
     }
 
-    public void cambiarVentana(Evento ev) {
+    public void cambiarVentana(Evento ev) throws SQLException {
         try {
             // Cargo la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PeleasVista.fxml"));
@@ -306,6 +366,12 @@ public class MenuVistaController implements Initializable {
 
             // Asocio el stage con el scene
             stage.setScene(scene);
+            //stage.setResizable(false);//Quitar el maximizar
+//            stage.resizableProperty().setValue(Boolean.FALSE);//Quitar el maximizar
+//            stage.initStyle(StageStyle.UTILITY);//Quitar el maximizar y minimizar
+//            stage.initStyle(StageStyle.UNDECORATED);
+            stage.getIcons().add(new Image(this.getClass().getResource("/Reportes/Gallo 1.jpg").toString()));
+            stage.setTitle("PELEAS");
             stage.show();
 
             // Indico que debe hacer al cerrar
@@ -321,7 +387,7 @@ public class MenuVistaController implements Initializable {
     }
 
     @FXML
-    private void DobleClick(MouseEvent event) {
+    private void DobleClick(MouseEvent event) throws SQLException {
         Evento e = this.tblEventos.getSelectionModel().getSelectedItem();
         if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
             System.out.println("Diste dos click we Calmate ALV");

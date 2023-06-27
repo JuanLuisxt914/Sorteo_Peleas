@@ -1,41 +1,50 @@
-
 package modelo;
 
-public class Pelea {
-    private int idPelea;
-    private Partido partido1;
-    private Partido partido2;
+import java.util.ArrayList;
 
-    public Pelea(int idPelea, Partido partido1, Partido partido2) {
-        this.idPelea = idPelea;
-        this.partido1 = partido1;
-        this.partido2 = partido2;
-    }
+public class Pelea{
+        private int numRonda;
+        private int numPelea;
+        private Gallo gallo1;
+        private Gallo gallo2;
 
-    public int getIdPelea() {
-        return idPelea;
-    }
 
-    public void setIdPelea(int idPelea) {
-        this.idPelea = idPelea;
-    }
+        public Pelea(int numRonda, int numPelea, Gallo gallo1, Gallo gallo2) {
+            this.numRonda = numRonda;
+            this.numPelea = numPelea;
+            this.gallo1 = gallo1;
+            this.gallo2 = gallo2;
+        }
 
-    public Partido getPartido1() {
-        return partido1;
-    }
+        public int getNumRonda() {
+            return numRonda;
+        }
 
-    public void setPartido1(Partido partido1) {
-        this.partido1 = partido1;
-    }
+        public void setNumRonda(int numRonda) {
+            this.numRonda = numRonda;
+        }
 
-    public Partido getPartido2() {
-        return partido2;
-    }
+        public int getNumPelea() {
+            return numPelea;
+        }
 
-    public void setPartido2(Partido partido2) {
-        this.partido2 = partido2;
+        public void setNumPelea(int numPelea) {
+            this.numPelea = numPelea;
+        }
+
+        public Gallo getGallo1() {
+            return gallo1;
+        }
+
+        public void setGallo1(Gallo gallo1) {
+            this.gallo1 = gallo1;
+        }
+
+        public Gallo getGallo2() {
+            return gallo2;
+        }
+
+        public void setGallo2(Gallo gallo2) {
+            this.gallo2 = gallo2;
+        }    
     }
-    
-    
-    
-}

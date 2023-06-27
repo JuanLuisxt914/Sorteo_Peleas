@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaPartidos" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a4ab7cb-026c-484c-817d-1c5db61d7292">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="Palenque" class="java.lang.String"/>
+	<parameter name="Descripcion" class="java.lang.String"/>
+	<parameter name="Imagen1" class="java.io.InputStream"/>
+	<parameter name="Imagen2" class="java.io.InputStream">
+		<parameterDescription><![CDATA[Image 2]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="num" class="java.lang.Integer"/>
+	<field name="partido" class="java.lang.String"/>
+	<title>
+		<band height="66" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="0" width="413" height="40" uuid="42715684-1404-4d2a-a328-9d3c7ecdc7a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="29" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Palenque}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="36" width="413" height="30" uuid="2ac5cc53-7c39-49a5-9d1e-30c22b338fb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Descripcion}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Icon">
+				<reportElement x="500" y="0" width="71" height="65" uuid="4a6b2af5-670c-4fcb-9d12-1292819e6eb9"/>
+				<imageExpression><![CDATA[$P{Imagen2}]]></imageExpression>
+			</image>
+			<image onErrorType="Icon">
+				<reportElement x="0" y="0" width="79" height="65" uuid="3b105c55-de34-4262-ab08-b246a0a065f0"/>
+				<imageExpression><![CDATA[$P{Imagen1}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-7" width="29" height="19" uuid="c8b5434c-2522-4c05-bcd3-a990c9841656"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="570" height="1" uuid="466cf17f-1a36-4922-8cd8-2020cb01dccb"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="30" y="-7" width="300" height="19" uuid="12ad7147-be13-4e4e-9354-c5f63916b150"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="-7" width="50" height="19" uuid="a740d756-b816-47fe-b359-f2d681b01e18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="-7" width="190" height="19" uuid="b67a32d2-0c86-46c6-9421-442417b28ee2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="1" width="50" height="19" uuid="0ddf632e-90b7-46b9-8933-6d70323a052e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="98483e57-5396-4bf0-85d6-33e4ab890e74"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement positionType="FixRelativeToBottom" x="50" y="1" width="280" height="19" uuid="ebedc303-0004-4f31-ab3c-fbfa9a54b060">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89445e0f-d077-4cfe-8a90-6608dd059d62"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partido}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="345" y="4" width="15" height="15" uuid="349d90ef-dd7f-4414-ac89-16db7111cb11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="23" width="570" height="1" uuid="56546b5e-7143-48d1-b25f-3ede5bf72609"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField textAdjust="ScaleFont" pattern="M/d/yy h:mm a">
+				<reportElement x="0" y="5" width="110" height="20" uuid="68e44811-06fc-4113-9c0c-0ce8c7aaaee0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="5" width="570" height="1" uuid="40b926de-982a-4b33-b643-489068435d5b"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="180" y="6" width="200" height="19" uuid="3e76cf7a-1301-4120-9b9c-e1684f8fe4ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[by Desarrollo 5]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="487" y="6" width="62" height="20" uuid="306a0aa9-8632-45ca-bba9-a57d723e46d2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Hoja " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" evaluationTime="Report">
+				<reportElement x="550" y="6" width="22" height="20" uuid="fc99c7a8-e7eb-4025-aa7c-47a7ef590890"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" /" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -169,18 +170,60 @@ public class RegistroGallosVistaController implements Initializable {
             conexion.ejecutarConsulta("SELECT * FROM gallos WHERE gallos.id_partido = "+e.getIdPartido());
 
             ResultSet rs = conexion.getResultSet();
+            
+            if (ObtenerModalidad()==1) {
+               int cont=0;
+               while(rs.next())
+                    cont++;
+               
+                ConexionMySQL conexion1 = new ConexionMySQL("localhost", "sorteo_de_peleas", "root", "");
+                conexion1.ejecutarConsulta("SELECT * FROM gallos WHERE gallos.id_partido = "+e.getIdPartido());
+                ResultSet rs1 = conexion1.getResultSet();
+               
+                if (cont == 1) {
+                    
+                    while (rs1.next()) {
+                        int id = rs1.getInt("id_gallo");
+                        int anillo = rs1.getInt("anillo");
+                        int peso = rs1.getInt("peso");
+                        int idP = rs1.getInt("id_partido");
+                        String nombre = e.getNombrePartido();
 
-            while (rs.next()) {
-                int id = rs.getInt("id_gallo");
-                int anillo = rs.getInt("anillo");
-                int peso = rs.getInt("peso");
-                int idP = rs.getInt("id_partido");
-                String nombre = e.getNombrePartido();
+                        Gallo g = new Gallo(id,peso, anillo,nombre);
+                        gallos.add(g);
+                        this.tblGallos.setItems(gallos);
+                    }    
+                }else{
+                    
+                    cont=1;
+                    while (rs1.next()) {
+                        int id = rs1.getInt("id_gallo");
+                        int anillo = rs1.getInt("anillo");
+                        int peso = rs1.getInt("peso");
+                        int idP = rs1.getInt("id_partido");
+                        String nombre = "E"+cont+" "+e.getNombrePartido();
+                        cont++;
+                        Gallo g = new Gallo(id,peso, anillo,nombre);
+                        gallos.add(g);
+                        this.tblGallos.setItems(gallos);
+                    }  
+                }
+               conexion1.cerrarConexion();
+            }else{
+                while (rs.next()) {
+                    int id = rs.getInt("id_gallo");
+                    int anillo = rs.getInt("anillo");
+                    int peso = rs.getInt("peso");
+                    int idP = rs.getInt("id_partido");
+                    String nombre = e.getNombrePartido();
 
-                Gallo g = new Gallo(id,peso, anillo,nombre);
-                gallos.add(g);
-                this.tblGallos.setItems(gallos);
+                    Gallo g = new Gallo(id,peso, anillo,nombre);
+                    gallos.add(g);
+                    this.tblGallos.setItems(gallos);
+                }    
             }
+
+            
             conexion.cerrarConexion();
         } catch (SQLException ex) {
             Logger.getLogger(RegistroGallosVistaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -216,7 +259,7 @@ public class RegistroGallosVistaController implements Initializable {
         
     }
     
-    public void closeWindows() {
+    public void closeWindows() throws SQLException {
         try {
             // Cargo la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PeleasVista.fxml"));
@@ -234,6 +277,8 @@ public class RegistroGallosVistaController implements Initializable {
 
             // Asocio el stage con el scene
             stage.setScene(scene);
+            stage.setTitle("PELEAS");
+            stage.getIcons().add(new Image(this.getClass().getResource("/Reportes/Gallo 1.jpg").toString()));
             stage.show();
             
             // Indico que debe hacer al cerrar
@@ -397,73 +442,22 @@ public class RegistroGallosVistaController implements Initializable {
     ////////////////// Gallos //////////////////////////////////////////////////
     @FXML
     private void AgregarGallo(ActionEvent event) throws SQLException {
-        try {
-            Partido e = this.tblPartidos.getSelectionModel().getSelectedItem();
-            if (partidos.size()!=0) {
-                if (e != null) {
-                    if (this.txtAnillo.getText().equals("") ){
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText(null);
-                        alert.setTitle("Error");
-                        alert.setContentText("Te falto escribir el anillo ");
-                        alert.showAndWait();
-                    }else if (this.txtPeso.getText().equals("") ){
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText(null);
-                        alert.setTitle("Error");
-                        alert.setContentText("Te falto escribir el peso ");
-                        alert.showAndWait();
-                    }else{
-                        int anillo = Integer.parseInt(this.txtAnillo.getText());
-                        int peso = Integer.parseInt(this.txtPeso.getText());
-                        String nombre = e.getNombrePartido();
-                        Gallo g= new Gallo(peso,anillo,nombre);
-                        if (e.getIdPartido()!=0) {
-                            if (g.insertarGallo(e.getIdPartido(),evento.getIdEvento())) {
-                                initTablaGallos(e);
-                                this.txtAnillo.setText("");
-                                this.txtPeso.setText("");
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setHeaderText(null);
-                                alert.setTitle("Exito ALV");
-                                alert.setContentText("Gallo agregado con exito ALV ");
-                                alert.showAndWait();
-                            }else{
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setHeaderText(null);
-                                alert.setTitle("Error");
-                                alert.setContentText("Algo Valio Madres we ");
-                                alert.showAndWait();
-                            } 
-                        }else{
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setHeaderText(null);
-                            alert.setTitle("Error");
-                            alert.setContentText("el id es 0");
-                            alert.showAndWait();
-                        }
-                    }
-                }else{
-                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                    alert1.setHeaderText(null);
-                    alert1.setTitle("Valio Barriga");
-                    alert1.setContentText("No Tienes ningun Partido seleccionado");
-                    alert1.showAndWait();   
-                }  
+        int modalidad=ObtenerModalidad();
+        
+        if (modalidad==1) {
+            GuardarGallo();
+        }else{
+            if (gallos.size()<modalidad) {
+                GuardarGallo();
             }else{
-                Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                alert1.setHeaderText(null);
-                alert1.setTitle("Valio Barriga");
-                alert1.setContentText("No hay Partidos");
-                alert1.showAndWait();   
-            }             
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Solo se permiten numeros ");
-            alert.showAndWait();
-        }     
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText("Ya registraste los "+modalidad+ " correspondientes");
+                alert.showAndWait();
+            }
+        }
+            
     }
     @FXML
     private void EliminarGallo(ActionEvent event) throws SQLException {
@@ -574,7 +568,125 @@ public class RegistroGallosVistaController implements Initializable {
     private void enterAnillo(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             this.btnAgregarGallo.fire(); 
+            this.txtPeso.requestFocus();
         }
+    }
+    
+    public void GuardarGallo() throws SQLException{
+         try {
+            Partido e = this.tblPartidos.getSelectionModel().getSelectedItem();
+            if (partidos.size()!=0) {
+                if (e != null) {
+                    if (this.txtAnillo.getText().equals("") ){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Error");
+                        alert.setContentText("Te falto escribir el anillo ");
+                        alert.showAndWait();
+                    }else if (this.txtPeso.getText().equals("") ){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Error");
+                        alert.setContentText("Te falto escribir el peso ");
+                        alert.showAndWait();
+                    }else{
+                        int anillo = Integer.parseInt(this.txtAnillo.getText());
+                        int peso = Integer.parseInt(this.txtPeso.getText());
+                        String nombre = e.getNombrePartido();
+                        Gallo g= new Gallo(peso,anillo,nombre);
+                        if (e.getIdPartido()!=0) {
+                            if (g.insertarGallo(e.getIdPartido(),evento.getIdEvento())) {
+                                initTablaGallos(e);
+                                this.txtAnillo.setText("");
+                                this.txtPeso.setText("");
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setHeaderText(null);
+                                alert.setTitle("Exito ALV");
+                                alert.setContentText("Gallo agregado con exito ALV ");
+                                alert.showAndWait();
+                            }else{
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText(null);
+                                alert.setTitle("Error");
+                                alert.setContentText("Algo Valio Madres we ");
+                                alert.showAndWait();
+                            } 
+                        }else{
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("Error");
+                            alert.setContentText("el id es 0");
+                            alert.showAndWait();
+                        }
+                    }
+                }else{
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setHeaderText(null);
+                    alert1.setTitle("Valio Barriga");
+                    alert1.setContentText("No Tienes ningun Partido seleccionado");
+                    alert1.showAndWait();   
+                }  
+            }else{
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setHeaderText(null);
+                alert1.setTitle("Valio Barriga");
+                alert1.setContentText("No hay Partidos");
+                alert1.showAndWait();   
+            }             
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Solo se permiten numeros ");
+            alert.showAndWait();
+        }
+    }
+    
+    public int ObtenerModalidad(){
+        int modalidad=0;
+        switch(evento.getModalidad()){
+            
+            case "Derbi de 1 Gallo" :
+                modalidad = 1;
+                break;
+                
+            case "Derbi de 2 Gallos" :
+                modalidad = 2;
+                break; 
+                
+            case "Derbi de 3 Gallos" :
+                modalidad = 3;
+                break; 
+                
+            case "Derbi de 4 Gallos" :
+                modalidad = 4;
+                break; 
+                
+            case "Derbi de 5 Gallos" :
+                modalidad = 5;
+                break; 
+                
+            case "Derbi de 6 Gallos" :
+                modalidad = 6;
+                break; 
+                
+            case "Derbi de 7 Gallos" :
+                modalidad = 7;
+                break; 
+                
+            case "Derbi de 8 Gallos" :
+                modalidad = 8;
+                break; 
+                
+            case "Derbi de 9 Gallos" :
+                modalidad = 9;
+                break;
+                
+            case "Derbi de 10 Gallos" :
+                modalidad = 10;
+                break;
+        }
+        return modalidad;
     }
 
     ////////////////// Amigos //////////////////////////////////////////////////
@@ -706,7 +818,7 @@ public class RegistroGallosVistaController implements Initializable {
                 alert.setContentText("Estas seguro que deseas eliminarlo??");
                 Optional<ButtonType> action = alert.showAndWait();
                 if (action.get() == ButtonType.OK) {
-                    if (pA.borrarPartidoAmigo(p.getNumPartido())) {
+                    if (pA.borrarPartidoAmigo(p.getNumPartido(),evento.getIdEvento())) {
                         initTablaAmigos(p);
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setHeaderText(null);
@@ -730,5 +842,13 @@ public class RegistroGallosVistaController implements Initializable {
             alert1.showAndWait();
         }
     }
+
+    @FXML
+    private void EnterAmigos(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            this.btnAgregarAmigo.fire(); 
+        } 
+    }
+      
 }    
 

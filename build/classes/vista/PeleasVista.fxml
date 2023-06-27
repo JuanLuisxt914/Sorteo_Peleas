@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="1213.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PeleasVistaController">
+   <children>
+      <Label alignment="CENTER" layoutY="-2.0" prefHeight="46.0" prefWidth="818.0" style="-fx-background-color: BLACK;" text="Peleas" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblPeleas" layoutX="450.0" layoutY="51.0" prefHeight="594.0" prefWidth="771.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0">
+        <columns>
+          <TableColumn fx:id="num" prefWidth="33.0" text="#" />
+          <TableColumn fx:id="peso1" prefWidth="66.0" text="Peso" />
+            <TableColumn fx:id="anillo1" prefWidth="61.0" text="Anillo" />
+            <TableColumn fx:id="partido1" prefWidth="226.0" text="Partido" />
+            <TableColumn fx:id="vs" minWidth="5.0" prefWidth="20.0" text="VS" />
+            <TableColumn fx:id="partido2" prefWidth="203.0" text="Partido" />
+            <TableColumn fx:id="anillo2" minWidth="0.0" prefWidth="75.0" text="Anillo" />
+            <TableColumn fx:id="peso2" prefWidth="72.0" text="Peso" />
+        </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="56.0" layoutY="59.0" prefHeight="27.0" prefWidth="132.0" text="Tolerancia" AnchorPane.leftAnchor="56.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTolerancia" alignment="CENTER" layoutX="83.0" layoutY="108.0" onKeyPressed="#enterTolerancia" prefHeight="4.0" prefWidth="78.0" text="80" AnchorPane.leftAnchor="83.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </TextField>
+      <RadioButton fx:id="rbRondas" layoutX="17.0" layoutY="181.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" text="Por Rondas" AnchorPane.leftAnchor="17.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="TipoDeSorteo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbAleatorio" layoutX="133.0" layoutY="181.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="111.0" selected="true" text="Aleatorio" toggleGroup="$TipoDeSorteo" AnchorPane.leftAnchor="133.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <Button fx:id="btnRegistro" layoutX="14.0" layoutY="219.0" mnemonicParsing="false" onAction="#IrARegistro" prefHeight="34.0" prefWidth="230.0" text="Registro" AnchorPane.leftAnchor="14.0" />
+      <Button fx:id="Sortear" layoutX="14.0" layoutY="276.0" mnemonicParsing="false" onAction="#Sortear" prefHeight="34.0" prefWidth="230.0" text="Sortear" AnchorPane.leftAnchor="14.0" />
+      <Button fx:id="btnSortearManual" layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="34.0" prefWidth="230.0" text="Sortear Manual" AnchorPane.leftAnchor="14.0" />
+      <Button fx:id="btnImprimir" layoutX="17.0" layoutY="577.0" mnemonicParsing="false" onAction="#Imprimir" prefHeight="34.0" prefWidth="230.0" text="Imprimir" AnchorPane.leftAnchor="17.0" />
+      <Button fx:id="btnModificarPelea" layoutX="17.0" layoutY="391.0" mnemonicParsing="false" onAction="#ModificarPelea" prefHeight="34.0" prefWidth="230.0" text="Modificar Pelea" AnchorPane.leftAnchor="17.0" />
+      <TableView fx:id="tblGallos" layoutX="258.0" layoutY="51.0" prefHeight="594.0" prefWidth="182.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="258.0" AnchorPane.topAnchor="51.0">
+        <columns>
+          <TableColumn fx:id="colR" prefWidth="28.0" text="R" />
+          <TableColumn fx:id="colPesoGallos" prefWidth="52.0" text="Peso" />
+            <TableColumn fx:id="colPartidoGallos" prefWidth="98.0" text="Partido" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnOrdenar" layoutX="17.0" layoutY="496.0" mnemonicParsing="false" onAction="#OrdenarPeleas" prefHeight="34.0" prefWidth="230.0" text="Ordenar" />
+      <Button fx:id="btnAgregarPelea" layoutX="18.0" layoutY="439.0" mnemonicParsing="false" onAction="#AgregarPelea" prefHeight="34.0" prefWidth="230.0" text="Agregar Pelea" />
+   </children>
+</AnchorPane>

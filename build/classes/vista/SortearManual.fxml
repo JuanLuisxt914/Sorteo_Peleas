@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="591.0" prefWidth="1175.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SortearManualController">
+    <stylesheets>
+        <URL value="@sortearmanual.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="64.0" prefWidth="1175.0" style="-fx-background-color: BLACK;">
+         <children>
+            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" graphicTextGap="9.0" prefHeight="62.0" prefWidth="1175.0" text="Sorteo Manual" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" top="2.0" />
+               </padding>
+            </Label>
+         </children>
+      </Pane>
+      <TableView layoutX="7.0" layoutY="64.0" prefHeight="521.0" prefWidth="209.0">
+        <columns>
+          <TableColumn prefWidth="44.0" text="id" />
+          <TableColumn prefWidth="155.0" text="Partido" />
+        </columns>
+      </TableView>
+      <TableView layoutX="227.0" layoutY="241.0" prefHeight="344.0" prefWidth="143.0">
+        <columns>
+          <TableColumn prefWidth="65.0" text="Anillo" />
+          <TableColumn prefWidth="72.0" text="Peso" />
+        </columns>
+      </TableView>
+      <TableView layoutX="382.0" layoutY="241.0" prefHeight="344.0" prefWidth="234.0">
+        <columns>
+          <TableColumn prefWidth="105.0" text="Partido" />
+          <TableColumn prefWidth="45.0" text="Peso" />
+            <TableColumn prefWidth="75.0" text="Anillo" />
+        </columns>
+      </TableView>
+      <TextField layoutX="228.0" layoutY="108.0" prefHeight="25.0" prefWidth="143.0" />
+      <Label layoutX="245.0" layoutY="70.0" text="Tolerancia">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="228.0" layoutY="156.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Encontrar VS" />
+      <Button layoutX="382.0" layoutY="156.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="234.0" text="Crear Pelea" />
+      <Button layoutX="382.0" layoutY="105.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="234.0" text="Eliminar Pelea" />
+      <Label layoutX="269.0" layoutY="205.0" text="Gallos">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="205.0" text="Posibles VS`s">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TableView layoutX="623.0" layoutY="64.0" prefHeight="521.0" prefWidth="542.0">
+        <columns>
+          <TableColumn prefWidth="25.0" text="#" />
+            <TableColumn prefWidth="50.0" text="Peso" />
+            <TableColumn minWidth="0.0" prefWidth="190.0" text="Partido" />
+            <TableColumn minWidth="0.0" prefWidth="32.0" text="VS" />
+            <TableColumn minWidth="0.0" prefWidth="190.0" text="Partido" />
+            <TableColumn prefWidth="52.0" text="Peso" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

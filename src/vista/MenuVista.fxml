@@ -8,14 +8,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuVistaController">
+<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuVistaController">
    <children>
-      <Label alignment="CENTER" layoutX="209.0" layoutY="24.0" style="-fx-background-color: BLACK;" text="Eventos" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label alignment="CENTER" layoutX="209.0" layoutY="24.0" prefHeight="46.0" prefWidth="673.0" style="-fx-background-color: BLACK;" text="Eventos" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tblEventos" layoutX="256.0" layoutY="35.0" onMouseClicked="#Seleccionar" onMousePressed="#DobleClick" prefHeight="490.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="35.0">
+      <TableView fx:id="tblEventos" layoutX="257.0" layoutY="52.0" onMouseClicked="#Seleccionar" onMousePressed="#DobleClick" prefHeight="526.0" prefWidth="416.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
         <columns>
           <TableColumn fx:id="colNombre" minWidth="0.0" prefWidth="213.0" text="Palenque" />
           <TableColumn fx:id="colFecha" prefWidth="91.0" text="Fecha" />

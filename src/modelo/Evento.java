@@ -12,7 +12,6 @@ public class Evento {
     private LocalDate fechaEvento;
     private String modalidad;
     private ArrayList<Partido> partidos;
-    private ArrayList<Pelea> peleas;
 
     public Evento(String nombrePalenque, LocalDate fechaEvento, String modalidad) {
         this.nombrePalenque = nombrePalenque;
@@ -72,14 +71,6 @@ public class Evento {
 
     public void setPartidos(ArrayList<Partido> partidos) {
         this.partidos = partidos;
-    }
-
-    public ArrayList<Pelea> getPeleas() {
-        return peleas;
-    }
-
-    public void setPeleas(ArrayList<Pelea> peleas) {
-        this.peleas = peleas;
     }
 
     public boolean insertarEvento() throws SQLException{
@@ -150,8 +141,7 @@ public class Evento {
                 +"fecha = '"+this.getFechaEvento().toString()+"',"
                 + "modalidad = '"+this.getModalidad()+"' "
                 +"WHERE eventos.id_evento = "+ this.getIdEvento();
-        
-        System.out.println(SQL);
+   
 
         // Devuelvo el numero de filas afectadas
         int filas = conexion.ejecutarInstruccion(SQL);

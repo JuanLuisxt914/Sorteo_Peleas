@@ -30,13 +30,13 @@
          </font>
       </Label>
       <TextField fx:id="txtPartido" layoutX="100.0" layoutY="91.0" onKeyPressed="#EnterPartido" prefHeight="36.0" prefWidth="257.0" promptText="Partido" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="91.0" />
-      <TextField fx:id="txtIdAmigo" layoutX="106.0" layoutY="316.0" prefHeight="25.0" prefWidth="113.0" AnchorPane.leftAnchor="106.0" AnchorPane.topAnchor="316.0" />
+      <TextField fx:id="txtIdAmigo" layoutX="106.0" layoutY="316.0" onKeyPressed="#EnterAmigos" prefHeight="25.0" prefWidth="113.0" AnchorPane.leftAnchor="106.0" AnchorPane.topAnchor="316.0" />
       <Button fx:id="btnAgregarAmigo" layoutX="239.0" layoutY="316.0" mnemonicParsing="false" onAction="#AgregarAmigo" prefHeight="25.0" prefWidth="119.0" text="Agregar Amigo" AnchorPane.leftAnchor="239.0" AnchorPane.topAnchor="316.0" />
       <Button fx:id="btnGuardar" layoutX="100.0" layoutY="141.0" mnemonicParsing="false" onAction="#Guardar" prefHeight="31.0" prefWidth="257.0" text="Guardar" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="141.0" />
       <Button fx:id="btnModificar" layoutX="99.0" layoutY="188.0" mnemonicParsing="false" onAction="#Modificar" prefHeight="31.0" prefWidth="257.0" text="Modificar" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="188.0" />
       <Button fx:id="btnEliminar" layoutX="99.0" layoutY="233.0" mnemonicParsing="false" onAction="#Eliminar" prefHeight="31.0" prefWidth="257.0" text="Eliminar" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="233.0" />
-      <TextField fx:id="txtPeso" layoutX="855.0" layoutY="120.0" onKeyPressed="#enterPeso" prefHeight="24.0" prefWidth="149.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="120.0" />
       <TextField fx:id="txtAnillo" layoutX="855.0" layoutY="169.0" onKeyPressed="#enterAnillo" prefHeight="24.0" prefWidth="149.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="169.0" />
+      <TextField fx:id="txtPeso" layoutX="855.0" layoutY="120.0" onKeyPressed="#enterPeso" prefHeight="24.0" prefWidth="149.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="120.0" />
       <Button fx:id="btnAgregarGallo" layoutX="1023.0" layoutY="145.0" mnemonicParsing="false" onAction="#AgregarGallo" prefHeight="25.0" prefWidth="119.0" text="Agregar Gallo" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="145.0" />
       <TableView fx:id="tblPartidos" editable="true" fixedCellSize="-5.0" layoutX="368.0" layoutY="64.0" onMouseClicked="#Seleccionar" prefHeight="527.0" prefWidth="405.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="368.0" AnchorPane.rightAnchor="405.0" AnchorPane.topAnchor="69.0">
         <columns>

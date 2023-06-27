@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rondas" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54344972-1110-480f-95d8-98d8a6f3cb70">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="Palenque" class="java.lang.String"/>
+	<parameter name="Descripcion" class="java.lang.String"/>
+	<parameter name="Imagen1" class="java.io.InputStream"/>
+	<parameter name="Imagen2" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="num" class="java.lang.Integer"/>
+	<field name="anillo1" class="java.lang.Integer"/>
+	<field name="peso1" class="java.lang.Integer"/>
+	<field name="partido1" class="java.lang.String"/>
+	<field name="partido2" class="java.lang.String"/>
+	<field name="peso2" class="java.lang.Integer"/>
+	<field name="anillo2" class="java.lang.Integer"/>
+	<field name="ronda" class="java.lang.String"/>
+	<group name="Rondas">
+		<groupExpression><![CDATA[$F{ronda}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<staticText>
+					<reportElement x="257" y="0" width="50" height="22" uuid="d285c406-4961-4b15-9dfa-5b2a2c25fb0b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ronda ]]></text>
+				</staticText>
+				<textField textAdjust="ScaleFont">
+					<reportElement x="306" y="0" width="44" height="22" uuid="f2cabecc-6cea-42c8-9f38-d505ff881eab"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ronda}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image onErrorType="Icon">
+				<reportElement x="0" y="0" width="87" height="79" uuid="5524f9aa-1114-4a00-8df8-52b3b92a9420"/>
+				<imageExpression><![CDATA[$P{Imagen1}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="80" y="0" width="413" height="40" uuid="c814795b-ed5b-4aa2-9e49-78f592a26ca2"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="29" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Palenque}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="40" width="413" height="30" uuid="09b6e833-1af3-40ef-94ab-3c77eac7c302"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Descripcion}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Icon">
+				<reportElement x="493" y="0" width="90" height="79" uuid="0d2c2313-648c-4513-a582-47cffea49fc0"/>
+				<imageExpression><![CDATA[$P{Imagen2}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="-2" width="62" height="26" uuid="f4c97168-98d3-40e3-9063-02d4ea0ff9c3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VERDE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="18" width="29" height="19" uuid="11bf597c-8f83-4189-b0dc-c84aeefc4bfe"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[# ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="18" width="40" height="19" uuid="455c9992-3fdf-495d-8dd5-3d06a315dcde"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anillo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="18" width="40" height="19" uuid="7a37676c-1750-428b-a383-b959515cd1e9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="18" width="150" height="19" uuid="8e952a63-6f5b-466b-a41d-af44cf357e53"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partido]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="39" width="570" height="1" uuid="355c8052-eb22-4de3-87bd-9978054b517b"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="283" y="18" width="30" height="18" uuid="207aab89-e1cc-47a9-88a7-fd954d1db1bc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="18" width="150" height="19" uuid="510c174a-d7f8-4430-aaad-f45f75145fa8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="-4" width="62" height="26" uuid="3efac0e7-e6dd-4324-ad3d-119181a48d4f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ROJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="18" width="40" height="19" uuid="2223b757-79aa-48d8-8e5b-59278f52a5e4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="18" width="41" height="19" uuid="7570a998-f62d-4464-a5bd-8ceaa11b2bc9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anillo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="28" height="20" uuid="8df5ed05-ef0b-4511-a672-db0502ea62c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6dd77594-6bc3-46d7-928d-911f7e90dbbf"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="0" width="40" height="20" uuid="e6bcd730-2263-423e-8541-d7bb221a1d5a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4dbb9b1e-0c2a-4f1f-864e-30366440166e"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anillo1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="0" width="40" height="20" uuid="447ba758-d85c-4925-a0d6-6605967c8d62">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ec9c08f1-16b0-41a8-9e2e-7829cbdd1ae8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso1}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="126" y="0" width="150" height="20" uuid="657608a6-88f6-402e-83bd-bf13fdf084df">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="272928c7-15c8-4454-ab57-7d727bbf40ce"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partido1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="16" width="570" height="1" uuid="c7cc424d-338c-496c-a278-6222b66e22c2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="283" y="0" width="30" height="18" uuid="876c5b68-4562-4bec-8b3b-9af8718d8a10"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VS]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="320" y="0" width="150" height="20" uuid="740b5acb-c627-4832-ba44-620a68de8936">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f9c02db3-3d6c-46f0-af05-15aad142a8cd"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partido2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="40" height="20" uuid="3c93f30f-77cc-49bd-a210-406addfadf9b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="000c0918-361d-4a7c-8c1e-3a3ba643cbd4"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="531" y="0" width="40" height="20" uuid="e1f72b88-9824-4b87-a264-02d8f7f6c0dd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="068a6eaa-ff4f-446b-81fc-1e169ab30137"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anillo2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="5" width="100" height="20" uuid="61b229b6-3e5d-4c56-8a7f-a3577d667df6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="6" width="200" height="19" uuid="a505ebe2-22d6-4d7e-a621-38d80cdbdd60"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[by Desarrollo 5]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="487" y="6" width="62" height="20" uuid="f592a773-b8d6-48c0-a04b-3e45d123ebd3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Hoja " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" evaluationTime="Report">
+				<reportElement x="550" y="6" width="22" height="20" uuid="9f60ad6d-1a39-408f-b04c-43095859ff30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" /" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="3" width="570" height="1" uuid="441c20dc-8a0a-4280-814b-548c279e5653"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

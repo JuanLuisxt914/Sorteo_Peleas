@@ -180,14 +180,14 @@ public class Partido {
         }
     }
     
-    public boolean borrarPartidoAmigo(int numA) throws SQLException{
+    public boolean borrarPartidoAmigo(int numA, int evento) throws SQLException{
         // Abro la conexion
         ConexionMySQL conexion = new ConexionMySQL("localhost", "sorteo_de_peleas", "root", "");
 
         // Sentencia para introducir un servicio
          String SQL = "DELETE FROM amigos WHERE amigos.id_amigo = "+this.getIdPartido()+""
-                + " OR amigos.num_amigo = "+numA;
-
+                + " OR (amigos.num_amigo = "+numA+" && amigos.id_evento = "+evento+" )";
+         
         // Devuelvo el numero de filas afectadas
         System.out.println(SQL);
 
