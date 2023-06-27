@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Score" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb99ef72-0c6c-471a-9681-279de063d903">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="Palenque" class="java.lang.String"/>
+	<parameter name="Imagen1" class="java.io.InputStream"/>
+	<parameter name="Imagen2" class="java.io.InputStream">
+		<parameterDescription><![CDATA[Image 2]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="num" class="java.lang.Integer"/>
+	<field name="partido" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="0" width="413" height="40" uuid="7c9ef296-2353-4ab1-abd6-1be06f2bc35e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="29" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Palenque}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="40" width="412" height="30" uuid="43385f97-cf51-4bdf-a676-9a37c2fe3eba"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SCORE]]></text>
+			</staticText>
+			<image onErrorType="Icon">
+				<reportElement x="0" y="4" width="79" height="65" uuid="901c1a54-50d4-4529-bae4-e8515b40764d"/>
+				<imageExpression><![CDATA[$P{Imagen1}]]></imageExpression>
+			</image>
+			<image onErrorType="Icon">
+				<reportElement x="499" y="4" width="71" height="65" uuid="cb62b752-540a-4a8c-9e1b-ffc32cace3d9"/>
+				<imageExpression><![CDATA[$P{Imagen2}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="26" width="570" height="1" uuid="7cb9e86e-3646-4f14-9e02-2b969e85ec8f"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="4" width="280" height="19" uuid="68c7fd20-521f-4bce-9195-ac001deb6ee4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="4" width="38" height="19" uuid="4ef9eef2-1bd8-46fe-b627-cd955027626a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="4" width="38" height="19" uuid="84fbc66b-da15-4cad-88b0-61c25d1772fd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="4" width="38" height="19" uuid="12e593da-96cc-4bd2-9bcc-768a3ff716f5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="4" width="38" height="19" uuid="267a62c0-103c-4944-a2d6-c58007414110"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="4" width="38" height="19" uuid="e3191ec4-b9b8-4751-a59a-84d7850cf363"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R5]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField textAdjust="ScaleFont">
+				<reportElement positionType="FixRelativeToBottom" x="0" y="4" width="280" height="19" uuid="a7ed4c1c-7783-4495-9283-13d68671d2d7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89445e0f-d077-4cfe-8a90-6608dd059d62"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partido}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="290" y="0" width="47" height="28" uuid="571eabc9-bb9b-4f78-a75f-64c47ed513bb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="337" y="0" width="47" height="28" uuid="9b5127fc-09ce-4463-9946-905e117d25a1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="384" y="0" width="47" height="28" uuid="c3b9b39e-79a3-4b6d-920b-64c5cd30d836"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="431" y="0" width="47" height="28" uuid="74500f74-55f0-4437-9ffa-6052f61f86b6"/>
+			</rectangle>
+			<line direction="BottomUp">
+				<reportElement x="290" y="0" width="47" height="28" uuid="819e87c2-e90f-47cc-869f-a50cba2addba"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="337" y="0" width="47" height="28" uuid="9885e246-9d5d-4096-a2d1-99b651ac8c03"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="384" y="0" width="47" height="28" uuid="2e6ee3d4-162c-4ebb-a641-b5337423c73b"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="431" y="0" width="47" height="28" uuid="95cc5170-a463-4fce-b9a7-03e5c41e8b06"/>
+			</line>
+			<line>
+				<reportElement x="0" y="27" width="290" height="1" uuid="1ca5be9a-d8c2-4ca9-8b1c-2110d573ab67"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="478" y="0" width="47" height="28" uuid="27524e15-3440-4d50-a888-263a06b029ea"/>
+			</rectangle>
+			<line direction="BottomUp">
+				<reportElement x="478" y="0" width="47" height="28" uuid="f25f9360-a2a0-4cb5-907f-50fc8f5e17ea"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField textAdjust="ScaleFont" pattern="M/d/yy h:mm a">
+				<reportElement x="0" y="5" width="110" height="20" uuid="12940f89-3c61-4c12-ab8d-d22893cbb8c0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="5" width="570" height="1" uuid="db7875ff-476f-4cf3-af03-17cab576245f"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="180" y="6" width="200" height="19" uuid="9ec2c39b-b7a9-41bc-99cc-911d247fc774"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[by Desarrollo 5]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="487" y="6" width="62" height="20" uuid="ebe259b6-a628-4a15-a9ea-d53fda541698"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Hoja " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" evaluationTime="Report">
+				<reportElement x="550" y="6" width="22" height="20" uuid="983c2ce3-33e0-4c1c-871b-39f657c9f65a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" /" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
